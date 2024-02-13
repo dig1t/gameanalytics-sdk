@@ -1,13 +1,6 @@
 local GAResourceFlowType = require(script.GAResourceFlowType)
 local GAProgressionStatus = require(script.GAProgressionStatus)
 local GAErrorSeverity = require(script.GAErrorSeverity)
-
-local ga = {
-	EGAResourceFlowType = GAResourceFlowType,
-	EGAProgressionStatus = GAProgressionStatus,
-	EGAErrorSeverity = GAErrorSeverity,
-}
-
 local logger = require(script.Logger)
 local threading = require(script.Threading)
 local state = require(script.State)
@@ -15,13 +8,14 @@ local validation = require(script.Validation)
 local store = require(script.Store)
 local events = require(script.Events)
 local utilities = require(script.Utilities)
+local httpApi = require(script.HttpApi)
+local Postie = require(script.Postie)
 local Players = game:GetService("Players")
 local MKT = game:GetService("MarketplaceService")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local LocalizationService = game:GetService("LocalizationService")
 local ScriptContext = game:GetService("ScriptContext")
-local Postie = require(script.Postie)
 local OnPlayerReadyEvent
 local ProductCache = {}
 local ONE_HOUR_IN_SECONDS = 3600
@@ -29,6 +23,18 @@ local MaxErrorsPerHour = 10
 local ErrorDS = {}
 local errorCountCache = {}
 local errorCountCacheKeys = {}
+
+local ga = {
+	EGAResourceFlowType = GAResourceFlowType;
+	EGAProgressionStatus = GAProgressionStatus;
+	EGAErrorSeverity = GAErrorSeverity;
+	Events = events;
+	Logger = logger;
+	HttpApi = httpApi;
+	Utilities = utilities;
+	Store = store;
+	Threading = threading;
+}
 
 local InitializationQueue = {}
 local InitializationQueueByUserId = {}
