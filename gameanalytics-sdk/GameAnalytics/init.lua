@@ -54,21 +54,20 @@ local function addToInitializationQueue(func, ...)
 end
 
 local function addToInitializationQueueByUserId(userId, func, ...)
-	if not ga:isPlayerReady(userId) then
-		if InitializationQueueByUserId[userId] == nil then
-			InitializationQueueByUserId[userId] = {}
-		end
-
-		table.insert(InitializationQueueByUserId[userId], {
-			Func = func;
-			Args = {...};
-		})
-
-		logger:i("Added event to player initialization queue")
-	else
-		--This should never happen
-		logger:w("Player initialization queue already cleared.")
+	if ga:isPlayerReady(userId) then
+		return
 	end
+
+	if InitializationQueueByUserId[userId] == nil then
+		InitializationQueueByUserId[userId] = {}
+	end
+
+	table.insert(InitializationQueueByUserId[userId], {
+		Func = func;
+		Args = {...};
+	})
+
+	logger:i("Added event to player initialization queue")
 end
 
 
