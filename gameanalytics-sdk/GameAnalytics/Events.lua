@@ -259,7 +259,7 @@ function events:setAvailableResourceCurrencies(availableResourceCurrencies)
 end
 
 function events:setAvailableResourceItemTypes(availableResourceItemTypes)
-	if not validation:validateResourceCurrencies(availableResourceItemTypes) then
+	if not validation:validateResourceItemTypes(availableResourceItemTypes) then
 		return
 	end
 
