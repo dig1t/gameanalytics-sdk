@@ -2,12 +2,6 @@ local GAResourceFlowType = require(script.GAResourceFlowType)
 local GAProgressionStatus = require(script.GAProgressionStatus)
 local GAErrorSeverity = require(script.GAErrorSeverity)
 
-local ga = {
-	EGAResourceFlowType = GAResourceFlowType,
-	EGAProgressionStatus = GAProgressionStatus,
-	EGAErrorSeverity = GAErrorSeverity,
-}
-
 local types = require(script.Types)
 local logger = require(script.Logger)
 local threading = require(script.Threading)
