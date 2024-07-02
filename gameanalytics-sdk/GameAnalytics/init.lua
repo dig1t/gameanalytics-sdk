@@ -587,8 +587,12 @@ function ga:PlayerJoined(Player)
 					--Cache
 					if not gamepassInfo then
 						--Get
-						gamepassInfo = MKT:GetProductInfo(id, Enum.InfoType.GamePass)
-						ProductCache[id] = gamepassInfo
+						local success, result = pcall(MKT.GetProductInfo, MKT, id, Enum.InfoType.GamePass)
+
+						if success then
+							gamepassInfo = result
+							ProductCache[id] = gamepassInfo
+						end
 					end
 
 					ga:addBusinessEvent(Player.UserId, {
@@ -670,8 +674,13 @@ function ga:GamepassPurchased(player, id, customGamepassInfo)
 	if not gamepassInfo then
 
 		--Get
-		gamepassInfo = MKT:GetProductInfo(id, Enum.InfoType.GamePass)
-		ProductCache[id] = gamepassInfo
+		local success, result = pcall(MKT.GetProductInfo, MKT, id, Enum.InfoType.GamePass)
+
+		if success then
+			gamepassInfo = result
+			ProductCache[id] = gamepassInfo
+		end
+
 	end
 
 	local amount = 0
